@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cc.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.cc.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="regTime" property="regtime" jdbcType="TIMESTAMP" />
+    <result column="regIp" property="regip" jdbcType="VARCHAR" />
+    <result column="is_new_process" property="isNewProcess" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="shop_status" property="shopStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, email, password, username, role, status, regTime, regIp, is_new_process, name, 
+    shop_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cc.model.User" >
+    insert into user (id, email, password, 
+      username, role, status, 
+      regTime, regIp, is_new_process, 
+      name, shop_status)
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{regtime,jdbcType=TIMESTAMP}, #{regip,jdbcType=VARCHAR}, #{isNewProcess,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{shopStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="regtime != null" >
+        regTime,
+      </if>
+      <if test="regip != null" >
+        regIp,
+      </if>
+      <if test="isNewProcess != null" >
+        is_new_process,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shopStatus != null" >
+        shop_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="isNewProcess != null" >
+        #{isNewProcess,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        #{shopStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.model.User" >
+    update user
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="regtime != null" >
+        regTime = #{regtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regip != null" >
+        regIp = #{regip,jdbcType=VARCHAR},
+      </if>
+      <if test="isNewProcess != null" >
+        is_new_process = #{isNewProcess,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        shop_status = #{shopStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.model.User" >
+    update user
+    set email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      regTime = #{regtime,jdbcType=TIMESTAMP},
+      regIp = #{regip,jdbcType=VARCHAR},
+      is_new_process = #{isNewProcess,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      shop_status = #{shopStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+</mapper>
